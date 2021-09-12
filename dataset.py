@@ -27,6 +27,10 @@ class GWDataset(Dataset):
             ToTensorV2()
         ])
 
+        self._to_tensor = A.Compose([
+            ToTensorV2()
+        ])
+
     def __len__(self):
         return len(self.df)
 
@@ -50,6 +54,8 @@ class GWDataset(Dataset):
             series = series.squeeze().numpy()
         if self.use_aug:
             series = self._aug(image=series)['image']
+        else:
+            series = self._to_tensor(image=series)['image']
         targets = self.targets[idx]
         return series, torch.tensor(targets).float()
 
@@ -70,6 +76,10 @@ class GradCamGWDataset(Dataset):
             self.bHP, self.aHP = signal.butter(8, (20, 500), btype='bandpass', fs=2048)
 
         self._aug = A.Compose([
+            ToTensorV2()
+        ])
+
+        self._to_tensor = A.Compose([
             ToTensorV2()
         ])
 
@@ -98,6 +108,7 @@ class GradCamGWDataset(Dataset):
         vis_series = series.copy()
         if self.use_aug:
             series = self._aug(image=series)['image']
-
+        else:
+            series = self._to_tensor(image=series)['image']
         targets = self.targets[idx]
         return series_id, series, vis_series, torch.tensor(targets).float()
