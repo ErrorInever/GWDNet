@@ -41,6 +41,9 @@ class MetricLogger:
             name=f'Fold: {fold}',
             resume=True)
 
+        if cfg.USE_GRAD_CAM:
+            self.grad_table = wandb.Table(columns=['id', 'target', 'prob', 'image', 'grad_cam_image'])
+
     def avg_log(self, train_avg_loss, val_avg_loss, score):
         wandb.log({
             'Epoch_train_loss': train_avg_loss,
@@ -53,6 +56,12 @@ class MetricLogger:
 
     def val_loss(self, loss):
         wandb.log({'Val loss': loss})
+
+    def fill_table(self, id, target, prob, image, grad_cam_image):
+        self.grad_table.add_data(id, target, prob, image, grad_cam_image)
+
+    def log_table(self):
+        wandb.log({'grad-cam': self.grad_table})
 
     def finish(self):
         """
