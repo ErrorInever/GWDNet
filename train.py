@@ -152,9 +152,9 @@ if __name__ == '__main__':
         cfg.MODEL_TYPE = f"tf_efficientnet_b{cfg.EFF_VER}_ns"
 
     if args.num_folds:
-    	cfg.NUM_FOLDS = args.num_folds
-   	if args.num_epochs:
-   		cfg.NUM_EPOCHS = args.num_epochs
+        cfg.NUM_FOLDS = args.num_folds
+    if args.num_epochs:
+        cfg.NUM_EPOCHS = args.num_epochs
 
     if args.test:
         cfg.NUM_EPOCHS = 1
@@ -250,7 +250,7 @@ if __name__ == '__main__':
 
         # NOTE remove after test code
         if args.test:
-        	break
+            break
 
     # CV score of all folds
     logger.info("==> Train done")
