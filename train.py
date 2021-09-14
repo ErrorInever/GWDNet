@@ -28,6 +28,8 @@ def parse_args():
     parser.add_argument('--device', dest='device', help='Use device: gpu or cpu. Default use gpu if available',
                         default='gpu', type=str)
     parser.add_argument('--eff_ver', dest='eff_ver', help='Efficient version', default=4, type=int)
+    parser.add_argument('--num_folds', dest='num_folds', help='Number of K folds', default=5, type=int)
+    parser.add_argument('--num_epochs', dest='num_epochs', help='Number of epochs', default=1, type=int)
     parser.add_argument('--ckpt', dest='ckpt', help='Path to model ckpt.pth.tar', default=None, type=str)
     parser.add_argument('--run_name', dest='run_name', help='Run name of wandb', default=None, type=str)
     parser.add_argument('--wandb_id', dest='wandb_id', help='Wand metric id for resume train', default=None, type=str)
@@ -149,9 +151,14 @@ if __name__ == '__main__':
         cfg.EFF_VER = args.eff_ver
         cfg.MODEL_TYPE = f"tf_efficientnet_b{cfg.EFF_VER}_ns"
 
+    if args.num_folds:
+    	cfg.NUM_FOLDS = args.num_folds
+   	if args.num_epochs:
+   		cfg.NUM_EPOCHS = args.num_epochs
+
     if args.test:
         cfg.NUM_EPOCHS = 1
-        cfg.NUM_FOLDS = 1
+        cfg.NUM_FOLDS = 10 # for fast result
 
     logger.info(f'==> Start {__name__} at {time.ctime()}')
     logger.info(f'==> Called with args: {args.__dict__}')
@@ -240,6 +247,10 @@ if __name__ == '__main__':
         logger.info(f"========== Fold: {fold + 1} Result ==========")
         print_result(val_folds)
         metric_logger.finish()
+
+        # NOTE remove after test code
+        if args.test:
+        	break
 
     # CV score of all folds
     logger.info("==> Train done")
