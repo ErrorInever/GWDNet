@@ -194,6 +194,10 @@ if __name__ == '__main__':
         train_dataset = GWDataset(train_folds, use_filter=True, use_transform=True, use_aug=True)
         val_dataset = GWDataset(val_folds, use_filter=True, use_transform=True, use_aug=False)
 
+        logger.info(f"train idx: {len(train_idxs)}")
+        logger.info(f"train dataset: {len(train_dataset)}")
+
+
         train_dataloader = DataLoader(train_dataset, batch_size=cfg.BATCH_SIZE, shuffle=True,
                                       num_workers=cfg.NUM_WORKERS, pin_memory=True, drop_last=True)
         val_dataloader = DataLoader(val_dataset, batch_size=cfg.BATCH_SIZE, shuffle=False, num_workers=cfg.NUM_WORKERS,
