@@ -191,7 +191,7 @@ if __name__ == '__main__':
         val_folds = train_df.loc[val_idxs].reset_index(drop=True)
         val_labels = val_folds['target'].values  # list of validation dataset targets of current fold
 
-        train_dataset = GWDataset(train_df, use_filter=True, use_transform=True, use_aug=True)
+        train_dataset = GWDataset(train_folds, use_filter=True, use_transform=True, use_aug=True)
         val_dataset = GWDataset(val_folds, use_filter=True, use_transform=True, use_aug=False)
 
         train_dataloader = DataLoader(train_dataset, batch_size=cfg.BATCH_SIZE, shuffle=True,
