@@ -183,7 +183,7 @@ if __name__ == '__main__':
     train_df = split_data_kfold(train_df, cfg.NUM_FOLDS)
     oof_df = pd.DataFrame()
     for fold in range(cfg.NUM_FOLDS):
-        logger.info(f'========== Fold: [{fold + 1} of {len(cfg.FOLD_LIST)}] ==========')
+        logger.info(f'========== Fold: [{fold + 1} of {cfg.NUM_FOLDS}] ==========')
         # Each fold divide on train and validation datasets
         train_idxs = train_df[train_df['fold'] != fold].index
         val_idxs = train_df[train_df['fold'] == fold].index
