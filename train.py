@@ -158,7 +158,7 @@ if __name__ == '__main__':
 
     if args.test:
         cfg.NUM_EPOCHS = 1
-        cfg.NUM_FOLDS = 10 # for fast result
+        cfg.NUM_FOLDS = 40 # for fast result
 
     logger.info(f'==> Start {__name__} at {time.ctime()}')
     logger.info(f'==> Called with args: {args.__dict__}')
