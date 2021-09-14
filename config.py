@@ -51,7 +51,8 @@ __C.T_0 = 10     # scheduler restarts after Ti epochs.
 # CROSS VALIDATION
 __C.NUM_FOLDS = 5
 __C.FOLD_LIST = [i for i in range(__C.NUM_FOLDS)]
-# METRICS WANDB
+# METRICS & WANDB
+__C.LOSS_FREQ = 100
 __C.WANDB_ID = None
 __C.RESUME_ID = None
 # PATHS

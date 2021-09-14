@@ -8,7 +8,6 @@ import pandas as pd
 import torch
 import torch.nn as nn
 import wandb
-
 from utils import *
 from config import cfg
 from dataset import GWDataset, GradCamGWDataset
