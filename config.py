@@ -22,7 +22,7 @@ __C.RUN_NAME = "GWD_BASELINE"
 __C.MODEL_TYPE = None
 # ----------------------------------------------------
 # GLOBAL
-__C.USE_GRAD_CAM = True
+__C.USE_GRAD_CAM = False
 __C.USE_APEX = True
 __C.EFF_VER = 3
 __C.DEVICE = None
