@@ -254,9 +254,6 @@ if __name__ == '__main__':
         print_result(val_folds)
         metric_logger.finish()
 
-        # NOTE remove after test code
-        if args.test:
-            break
 
     # CV score of all folds
     logger.info("==> Train done")
