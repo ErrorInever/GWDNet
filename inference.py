@@ -66,6 +66,7 @@ if __name__ == '__main__':
     if args.eff_ver:
         cfg.EFF_VER = args.eff_ver
         cfg.MODEL_TYPE = None
+        cfg.NUM_FOLDS = 2
 
     logger.info(f'==> Start {__name__} at {time.ctime()}')
     logger.info(f'==> Config params: {cfg.__dict__}')
