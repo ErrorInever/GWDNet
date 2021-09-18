@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     if args.eff_ver:
         cfg.EFF_VER = args.eff_ver
-        cfg.MODEL_TYPE = f"tf_efficientnet_b{cfg.EFF_VER}_ns"
+        cfg.MODEL_TYPE = None
 
     logger.info(f'==> Start {__name__} at {time.ctime()}')
     logger.info(f'==> Config params: {cfg.__dict__}')
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     test_df['img_path'] = test_df['id'].apply(get_test_file_path)
 
     model = get_model(cfg.EFF_VER, pretrained=False).to(cfg.DEVICE)
-    states = [torch.load(os.path.join(args.model_dir, f"tf_efficientnet_b{cfg.EFF_VER}_ns_fold_{fold}_best_val_loss.pth.tar"))
+    states = [torch.load(os.path.join(args.model_dir, f"{cfg.MODEL_TYPE}_fold_{fold}_best_val_loss.pth.tar"))
               for fold in cfg.FOLD_LIST]
     test_dataset = GWDataset(test_df, use_filter=True, use_transform=True)
     test_dataloader = DataLoader(test_dataset, batch_size=cfg.BATCH_SIZE, num_workers=2, pin_memory=True)
