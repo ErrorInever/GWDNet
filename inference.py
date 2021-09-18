@@ -71,7 +71,7 @@ if __name__ == '__main__':
     logger.info(f'==> Called with args: {args.__dict__}')
     logger.info(f'==> Using device:{args.device}')
 
-    if args.off:
+    if args.oof:
         oof = pd.read_csv(args.oof)
         logger.info('==> Loaded cross validation score')
         print_result(oof)
