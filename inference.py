@@ -22,6 +22,7 @@ def parse_args():
     parser.add_argument('--oof', dest='oof', help='Path to oof score', default=None, type=str)
     parser.add_argument('--ckpt', dest='ckpt', help='Path to model ckpt.pth.tar', default=None, type=str)
     parser.add_argument('--run_name', dest='run_name', help='Run name of wandb', default=None, type=str)
+    parser.add_argument('--model_name', dest='model_name', help='Model name', default=None, type=str)
 
     parser.print_help()
     return parser.parse_args()
@@ -67,6 +68,9 @@ if __name__ == '__main__':
         cfg.EFF_VER = args.eff_ver
         cfg.MODEL_TYPE = None
         cfg.NUM_FOLDS = 1
+
+    if args.model_name:
+        cfg.MODEL_TYPE = args.model_name
 
     logger.info(f'==> Start {__name__} at {time.ctime()}')
     logger.info(f'==> Config params: {cfg.__dict__}')
