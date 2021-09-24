@@ -68,6 +68,7 @@ if __name__ == '__main__':
         cfg.EFF_VER = args.eff_ver
         cfg.MODEL_TYPE = None
         cfg.NUM_FOLDS = 1
+        cfg.FOLD_LIST = [0, 1]
 
     if args.model_name:
         cfg.MODEL_TYPE = args.model_name
